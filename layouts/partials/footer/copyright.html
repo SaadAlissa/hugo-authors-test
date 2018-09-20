@@ -1,0 +1,7 @@
+<div class="content">
+  {{ with .Site.Params.copyright }}
+  {{ . }}
+  {{ else }}
+  Copyright &copy; {{ now.Format "2006" }}
+  {{ end }}
+</div>

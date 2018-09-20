@@ -1,0 +1,23 @@
+{{ define "main" }}
+<h1>layouts/_default/single</h1>
+
+{{ $PageTitle := .Title }}
+
+{{ with .Resources.ByType "image" }}
+  {{ range . }}
+  <img src="{{ .RelPermalink }}" alt="{{ $PageTitle | title }}" />
+  {{ end }}
+{{ end }}
+{{ range .Params.authors}}
+{{.}}{{end}}
+{{ .Content }}
+
+{{ if .PrevInSection }}
+  <a class="btn btn-light" href="{{ .PrevInSection.Permalink }}">Previous Post</a>
+{{ end }}
+{{ if .NextInSection }}
+  <a class="btn btn-light" href="{{ .NextInSection.Permalink }}">Next Post</a>
+{{ end }}
+
+
+{{ end }}

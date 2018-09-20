@@ -1,0 +1,16 @@
+{{ define "main" }}      
+<h1>layout/_default/terms</h1>
+List of all {{ .Type  }}
+{{.}}
+<div >
+  <ol>
+    {{ range .Pages }}
+    
+      <li>
+        <a href="{{.Permalink}}">{{.Title}}</a>
+      </li>
+    {{ end }}
+  </ol>
+</div>
+    
+{{ end }}

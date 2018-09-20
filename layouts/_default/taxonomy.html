@@ -1,0 +1,32 @@
+{{ define "main" }}      
+<h1>layout/_default/taxonomy</h1>
+
+{{ $currentTerm := .Data.Term }}
+{{ $currentTerm }} / {{ .Data.Terms }} / {{ .Type }}
+    <div >
+    
+    {{ range $key, $taxonomy := (index .Site.Taxonomies .Type )}}
+      {{ if eq $currentTerm $key }}
+      <h4>
+        {{ $tagURL := printf "tags/%s" $currentTerm | relURL }}
+        <a href="{{$tagURL}}">
+          {{$taxonomy.Count}} 
+          {{ if (gt $taxonomy.Count 1) }}Posts{{ else }}Post{{end}} Tagged 
+          <em>{{ $currentTerm }}</em>
+        </a>
+      </h4>
+      {{ end }}
+    {{ end }}
+    <ul>
+
+      {{ range .Pages }}
+        <li>
+          <a href="{{.Permalink}}">{{.Title}}</a>
+          {{ with .Params.author }}{{ . }}{{ else }}{{ .Site.Params.author.name }}{{ end }}
+          {{ with .PublishDate }} &middot; <time datetime="{{ .Format "2006-01-02T15:04:05-07:00" }}">{{ .Format "02 Jan 2006" }}</time>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+    
+{{ end }}

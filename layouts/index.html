@@ -1,0 +1,15 @@
+{{ define "main" }}
+<h1>layout/index</h1>
+
+{{ $pages := .Site.RegularPages }}
+
+{{ range first 3 $pages }}
+  <!-- Display LATEST published blog post  -->
+  <h1>{{.Title}}</h1>
+  <h2>{{.Params.authors}}</h2>
+  {{.Content}}
+  
+{{ end }}
+  
+  
+{{ end }}

@@ -1,0 +1,17 @@
+{{ define "main" }}      
+<h1>layouts/authors/list</h1>
+
+{{ $pages := where .Site.RegularPages "Type" "in" .Section }}
+
+{{ range ($pages.GroupByDate "2006") }}
+  <h2>{{ .Key }}</h2>
+  <div>
+    <ol>
+      {{ range .Pages }}
+        <li>{{ .Title }}</li>
+      {{ end }}
+    </ol>
+  </div>
+{{ end }}
+    
+{{ end }}

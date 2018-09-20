@@ -1,0 +1,28 @@
+{{ define "main" }}      
+<h1>layouts/_default/list</h1>
+
+{{ $pages := where .Site.RegularPages "Type" "in" .Section }}
+{{ $paginator := .Paginate $pages  }}
+{{ $isNodeOrHome := (or .IsNode .IsHome )}}
+{{ $.Scratch.Set "postCount" ( $paginator.PageSize ) }}
+        
+{{ if gt $paginator.TotalPages 1 }}
+  {{ partial "utils/paginator.html" ( dict "paginator" $paginator ) }}
+{{ end }}
+
+{{ range ($paginator.Pages.GroupByDate "2006") }}
+  <h2>{{ .Key }}</h2>
+  <div>
+    <ol>
+      {{ range .Pages }}
+        <li>{{ .Title }}</li>
+      {{ end }}
+    </ol>
+  </div>
+{{ end }}
+
+{{ if gt $paginator.TotalPages 1 }}
+  {{ partial "utils/paginator.html" ( dict "paginator" $paginator ) }}
+{{ end }}
+    
+{{ end }}
