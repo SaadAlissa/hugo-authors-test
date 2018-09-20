@@ -1,4 +1,4 @@
-baseURL = "http://pedantic-hermann-b32bb7.netlify.com/"
+baseURL = "https://pedantic-hermann-b32bb7.netlify.com/"
 languageCode = "en-us"
 title = "My New Hugo Site"
 
